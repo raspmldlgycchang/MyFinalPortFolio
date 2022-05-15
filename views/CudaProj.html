@@ -51,7 +51,7 @@
             overflow: hidden;
             position: relative;
             width: 1000px;
-            height: 1200px;
+            height: 3000px;
             left: 250px;
         }
 
@@ -65,7 +65,7 @@
             width: 150px;
             height: 1000px;
             left: 1250px;
-            top: -1200px;
+            top: -3000px;
             margin-left: 10px;
             border: thin solid rgb(243, 200, 237);
             background-color: rgb(243, 200, 237);
@@ -122,11 +122,11 @@
             <ul>
                 <li><a target="_blank" href="MFCProj.html">MFC 이미지뷰어앱</a></li>
                 <li><a target="_blank" href="CudaProj.html">CUDA 병렬처리</a></li>
-                <li><a target="_blank" href="MultiThread.html">멀티스레드</a></li>
             </ul>
         </nav>
         <section>
             <!--<span><img src="public/img/main/main_pic2.png" class="homeimg"></span>-->
+            <!-- Reduction Sum(warp/kernel 개수 축소) -->
             <article class="column col1">
                 <h4 class="col_tit">Reduction Sum</h4>
                 <p class="col_desc">토너먼트 방식으로 배열의 원소의 합을 구하는 방식입니다</p>
@@ -147,10 +147,72 @@
                 <p class="col_desc">출처 : 학교강의자료, 작업 인원 :1(본인)</p>
                 <p class="col_desc">기능 : __ syncthreads()를 통한 스레드 동기화</p>
                 <p class="col_desc">구현 및 효과 : warp / kernel 개수 축소로 병렬처리 연산횟수 감소</p>
-                <h4 class="col_tit">Video</h4>
-                <p class="col_desc">가장 최신 캡쳐 영역을 SET ROI를 통해 파일열기에서 영역 출력가능</p>
-                <video src="../public/video/light02_s.mp4" controls autoplay></video>
+                <h4 class="col_tit">느낀 점</h4>
+                <p class="col_desc">reduction tree와 dfs알고리즘로부터 유추가능한<br/> inverse reduction tree알고리즘을
+                    작성하여 구현할 수 있었습니다. <br/>이로부터 알고리즘 문제에서 
+                    2차원배열을 다루는데 자주 사용되었던 <br/>dfs알고리즘이 영상처리 분야에서도 쓰인다는것을 알았고 <br/>
+                    우리 디알젬 회사에서 기존의 알고리즘을 응용하여 더 많은 병렬처리로 <br/>효율적인
+                    영상처리를 할 수 있는 공부를 하고 싶습니다.</p>
             </article>
+
+
+            <article class="column col1">
+                <h4 class="col_tit">Brent-Kung Inclusive Scan</h4>
+                <p class="col_desc">prefix sum, parallel scan을 통한 partial sum</p>
+                <div class="lightbox square">
+                    <a href="../public/img/light/light10_s.png"><img src="../public/img/light/light10_s.png" alt="Brent-Kung Inclusive Scan 과 reduction tree의 유사함을 보여주는 그림"></a>
+                    <a href="../public/img/light/light11_s.png"><img src="../public/img/light/light11_s.png" alt="실행화면"></a>
+                </div>
+            </article>
+            <article class="column col1"></article>
+            <article class="column col1"></article>
+            <article class="column col1"></article>
+            <article class="column col1"></article>
+            <article class="column col6">
+                <p class="col_desc">출처 : 본인(GYCCHANG),  작업인원 :1(본인)</p>
+                <p class="col_desc">구현 : tournament 방식으로 구한 stride를 활용한 partial_sum이용한 배열 전체 합 구하는 알고리즘</p>
+                <p class="col_desc">구현 : three-kernel scan에서 third kernel scan을 reduction tree와 inverse reduction tree 코드로 구현</p>
+                <h4 class="col_tit">느낀점</h4>
+                <p class="col_desc">스스로 dfs알고리즘의 유사성을 떠올려 inverse reduction tree로도 구현에 성공했다.<br/>
+                    원문에서 Brent-Kung scan알고리즘이 reduction tree와 유사하다는 설명 뒤에 <br/>stride에 따른 각 반복에서 더해질 원소의 인덱스에 1을 더해서 인덱스를<br/> 설정해주어야 하는 이유를 생각해보도록 했고 이에 대한 답변을 <br/>구하기 위해 reduction tree를 적용해보고 <br/>그 이후에 dfs알고리즘을 써도 되겠다는 생각을 했다. 영상처리에 있어서 <br/>기존의 알고리즘을 응용해서 더 많은 효율적인 코드를 <br/>만들어 낼 수 있겠다는 생각에 이 분야에 더 관심이 가게 되는 계기였다.                    
+                </p></h4>
+                
+            </article>
+
+            <article class="column col1">
+                <h4 class="col_tit">Shared Memory와 gpu을 이용한 행렬곱셈가속화 알고리즘</h4>
+                <p class="col_desc">토너먼트 방식으로 배열의 원소의 합을 구하는 방식입니다</p>
+                <!-- lightbox-->
+                <div class="lightbox square">
+                    <a href="../public/img/light/light12_s.png"><img src="../public/img/light/light12_s.png" alt="행렬성분초기화"></a>
+                    <a href="../public/img/light/light13_s.png"><img src="../public/img/light/light13_s.png" alt="g_c(0,0)성분의 block(0,0)에서 구한 일부 sum"></a>
+                    <a href="../public/img/light/light14_s.png"><img src="../public/img/light/light14_s.png" alt="g_c(0,1)성분의 block(0,0)에서 구한 일부 sum"></a>
+                    <a href="../public/img/light/light15_s.png"><img src="../public/img/light/light15_s.png" alt="g_c(1,0)성분의 block(0,0)에서 구한 일부 sum"></a>
+                    <a href="../public/img/light/light16_s.png"><img src="../public/img/light/light16_s.png" alt="g_c(1,1)성분의 block(0,0)에서 구한 일부 sum"></a>
+                    <a href="../public/img/light/light17_s.png"><img src="../public/img/light/light17_s.png" alt="행렬성분초기화위한 다른블럭에서 동일작업"></a>
+                    <a href="../public/img/light/light18_s.png"><img src="../public/img/light/light18_s.png" alt="연산시간단축결과"></a>
+                    <a href="../public/img/light/light19_s.png"><img src="../public/img/light/light19_s.png" alt="연산시간단축결과"></a>
+                </div>
+                
+            </article>
+            <article class="column col1"></article>
+            <article class="column col1"></article>
+            <article class="column col1"></article>
+            <article class="column col1"></article>
+            <article class="column col6">
+                <h4 class="col_tit">기능 및 구현 방법</h4>
+                <p class="col_desc">출처 : 본인(GYCCHANG), 작업 인원 :1(본인)</p>
+                <p class="col_desc">기능 : __ syncthreads()를 통한 스레드 동기화</p>
+                <p class="col_desc">기능 : 수학의 행렬곱셈 속도보다 250,000배 빠른 속도의 연산의 병렬처리</p>
+                <p class="col_desc">구현 : Shared memory를 이용해 행렬 일부를 블록 단위의 sum을 진행해 행렬 곱셈을 가속화</p>
+                <h4 class="col_tit">느낀 점</h4>
+                <p class="col_desc">reduction tree와 dfs알고리즘로부터 유추가능한<br/> inverse reduction tree알고리즘을
+                    작성하여 구현할 수 있었습니다. <br/>이로부터 알고리즘 문제에서 
+                    2차원배열을 다루는데 자주 사용되었던 <br/>dfs알고리즘이 영상처리 분야에서도 쓰인다는것을 알았고 <br/>
+                    우리 디알젬 회사에서 기존의 알고리즘을 응용하여 더 많은 병렬처리로 <br/>효율적인
+                    영상처리를 할 수 있는 공부를 하고 싶습니다.</p>
+            </article>
+
         </section>
         <aside>
             <span class="mp2">나의 프로필</span>
