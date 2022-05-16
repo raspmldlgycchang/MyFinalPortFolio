@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gwanyeong Kim(GYCCHANG) -MFCProj.html</title>
+    <title>Gwanyeong Kim(GYCCHANG) -SharedPrinterJava.html</title>
     <style>
         @font-face {
             font-family: "MapoBackpacking";
@@ -101,7 +101,7 @@
             clear: both;
         }
     </style>
-    <link type="text/css" rel="stylesheet" href="../public/css/imageprocessing/style.css">
+    <link type="text/css" rel="stylesheet" href="../public/css/imageprocessing/MultiThreadstyle.css">
     </link>
     <link type="text/css" rel="stylesheet" href="../public/css/imageprocessing/lightgallery.css">
     </link>
@@ -128,7 +128,7 @@
                         <li><a href="MatMulAccel.html">Shared Memory와 gpu을 이용한 행렬곱셈가속화 알고리즘</a></li>
                     </ol>
                 </li>
-                <li><a href="MultiThread.html">멀티스레드</a></li>
+                <li><a href="SumMultiThread.html">멀티스레드</a></li>
                 <ol>
                     <li><a href="SumMultiThread.html">TCP/IP소켓을 이용한 멀티스레드기반 서버</a></li>
                     <li><a href="ChatMultiThread.html">TCP/IP소켓을 이용한 다중접속서버</a></li>
@@ -137,40 +137,38 @@
             </ul>
         </nav>
         <section>
-            <!--<span><img src="public/img/main/main_pic2.png" class="homeimg"></span>-->
             <article class="column col1">
-                <h4 class="col_tit">Image Viewer App</h4>
-                <p class="col_desc">이미지에서 캡쳐 영역을 SET ROI버튼을 통해 조각이미지를 출력하는 프로젝트입니다</p>
+                <h4 class="col_tit">synchronized키워드를 통한 SharedPrinter 공유프린터기 기능 구현</h4>
+                <p class="col_desc">워커쓰레드 모델을 synchronized키워드와 공유변수를 통해 구현</p>
                 <!-- lightbox-->
                 <div class="lightbox square">
-                    <a href="../public/img/light/light01_s.jpg"><img src="../public/img/light/light01_s.jpg" alt="SET ROI버튼으로 조각 출력(세 번째 SET ROI버튼 위 조각이미지)"></a>
-                    <a href="../public/img/light/light02_s.jpg"><img src="../public/img/light/light02_s.jpg" alt="파일열기 후 SET ROI버튼을 통해, 새로운 이미지의 해당 영역을 조각으로 출력"></a>
-
+                    <a href="../public/img/light/light41_s.png"><img src="../public/img/light/light41_s.png" alt="Atomic Operation이 3단계가 count++; 단계에서 이루어지고, 스레드 동기화를 하지 않아, 여러 스레드가 메모리에 동시접근해서 동기화 문제 발생"></a>
+                    <a href="../public/img/light/light42_s.jpg"><img src="../public/img/light/light42_s.jpg" alt="스레드 동기화를 통한 여러 스레드가 공유 프린터기에 접근하여 섞여서 출력되는 문제를 해결"></a>
+                    <a href="../public/img/light/light43_s.jpg"><img src="../public/img/light/light43_s.jpg" alt="count++;을 하는 atomic operation의 동기화를 통한, 모든 스레드의 count증가 결과가 1씩 증가된 것을 볼 수 있는 결과화면"></a>
                 </div>
             </article>
             <article class="column col1"></article>
             <article class="column col1"></article>
             <article class="column col1"></article>
             <article class="column col1"></article>
+            
+            <article class="column col1"></article>
+            <article class="column col1"></article>
+            <article class="column col1"></article>
+            
+            <article class="column col1"></article>
+            <article class="column col1"></article>
+            <article class="column col1"></article>
             <article class="column col6">
-                <h4 class="col_tit">캡쳐 구현</h4>
+                <h4 class="col_tit">기능 및 구현 방법</h4>
                 <p class="col_desc">출처 : 김관영(본인작성),  작업인원 :1(본인)</p>
-                <p class="col_desc">기능 : 최신 캡쳐 영역을 화면에 남겨두는 기능</p>
-                <p class="col_desc">기능 : SET ROI버튼을 통해 지정한 영역 좌표 출력</p>
-                <p class="col_desc">기능 : 조각이미지 출력버튼을 통해 캡쳐 영역 출력</p>
-                <h4 class="col_tit">Video</h4>
-                <p class="col_desc">가장 최신 캡쳐 영역을 SET ROI를 통해 파일열기에서 영역 출력가능</p>
-                <video src="../public/video/light02_s.mp4" controls autoplay></video>
-                
-                <h4 class="col_tit">한계 및 느낀점</h4>
-                <h4 class="col_tit">한계</h4>
-                <p class="col_desc">그림에 그려진 기존의 캡쳐 영역이, SET ROI버튼을 두 번 눌러 영역 지정을 해야만, 지워진다.<br/>
-                    조각이미지 출력될 때 캡쳐로 지정한 영역을 컨트롤과 파일에서는 제대로 가져오는데,<br> 조각이미지를 가져오는 코드인, 비트맵 정보를 CImage에 복사하는 함수에서,<br/> 윈도우 영역과 Client 영역의 캡션 차이로 인해서,<br/> 조각이미지로 가져오는 부분이 좌표가 그만큼씩 밀려서 복사된다
-                </p>
-                <h4 class="col_tit">느낀점</h4>
-                <p class="col_desc">윈도우와 클라이언트 영역 간의 캡션, 한글과 영문의 글자 차이에 따른 글자체, 글자크기 설정 등 세세한 부분이<br/> 시각성을 결정하는 것이 영상처리 분야에서 주니어 개발자 딱지를 떼기위한 첫 단계라고 생각한다.<br/> 나의 꼼꼼함과 기본적인 내용 구현 가능한 상태에서<br/> 우리 디알젬 회사에서 ERP/MRP 개발유지보수 업무를 통해<br/> 완성도 높은 영상처리 프로그램을 만들고 싶다.
-                </p>
+                <p class="col_desc">기능 : 스레드 동기화를 통한 공유 프린터기에서 앞의 문서가 모두 출력되고 난 뒤 뒤의 문서가 출력되는 기능</p>
+                <p class="col_desc">구현 : 86400번의 더하기 연산을 컴퓨터는 1초도 채 안되는 시간 내에 해낸다.<br/> 따라서 단 3개의 Atomic Operation을 하는 중에 <br/>다른 스레드가 접근하는 것은 이슈가 될 수 있는 상황이다. 이 상황을 고치기 위해 <br/>Sleep함수를 주어 다른 스레드가 Atomic Operation을 하기 전에<br/> 먼저 하고 있던  한 스레드의 Atomic Operation을 끝내도록 하여 동기화 문제를 해결했다.</p>
+                <h4 class="col_tit">느낀 점</h4>
+                <p class="col_desc">워커 스레드 모델은 자바 뿐만 아니라 다른 언어에서도 언급되는 이야기로, <br/>이 모델을 통해서 지금의 상황에서는 영어 String배열을 받은 WorkerThread객체 w1이 <br/>print메서드를 수행하는 동안인 영어 String배열의 모든 원소를 출력하는 코드를<br/> 다 끝내기 전에<br/><br/> 다른 스레드인 WorkerThread객체 w2가 공유변수인 프린터에 접근하지 못하도록<br/> 한 것을알 수 있다. <br/>그것은 영어 배열이 모두 출력된뒤 한글 배열이 출력된 것을 통해서 알 수 있다. <br/><br/>그리고 추가적인 성과로 세번째 결과인 공유변수인 count를 atomic operation을 하는 동안 <br/>다른 스레드의 접근을 막아 1씩 증가하는 count결과를 모두 출력해내는데에 성공했다.<br/></p>
             </article>
+
+        
         </section>
         <aside>
             <!--

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gwanyeong Kim(GYCCHANG) -MFCProj.html</title>
+    <title>Gwanyeong Kim(GYCCHANG) -MultiThread.html</title>
     <style>
         @font-face {
             font-family: "MapoBackpacking";
@@ -101,7 +101,7 @@
             clear: both;
         }
     </style>
-    <link type="text/css" rel="stylesheet" href="../public/css/imageprocessing/style.css">
+    <link type="text/css" rel="stylesheet" href="../public/css/imageprocessing/MultiThreadstyle.css">
     </link>
     <link type="text/css" rel="stylesheet" href="../public/css/imageprocessing/lightgallery.css">
     </link>
@@ -128,7 +128,7 @@
                         <li><a href="MatMulAccel.html">Shared Memory와 gpu을 이용한 행렬곱셈가속화 알고리즘</a></li>
                     </ol>
                 </li>
-                <li><a href="MultiThread.html">멀티스레드</a></li>
+                <li><a href="SumMultiThread.html">멀티스레드</a></li>
                 <ol>
                     <li><a href="SumMultiThread.html">TCP/IP소켓을 이용한 멀티스레드기반 서버</a></li>
                     <li><a href="ChatMultiThread.html">TCP/IP소켓을 이용한 다중접속서버</a></li>
@@ -139,13 +139,12 @@
         <section>
             <!--<span><img src="public/img/main/main_pic2.png" class="homeimg"></span>-->
             <article class="column col1">
-                <h4 class="col_tit">Image Viewer App</h4>
-                <p class="col_desc">이미지에서 캡쳐 영역을 SET ROI버튼을 통해 조각이미지를 출력하는 프로젝트입니다</p>
-                <!-- lightbox-->
+                <h4 class="col_tit">TCP/IP소켓을 이용한 다중접속서버</h4>
+                <p class="col_desc">가장 최신 캡쳐 영역을 SET ROI를 통해 파일열기에서 영역 출력가능</p>
                 <div class="lightbox square">
-                    <a href="../public/img/light/light01_s.jpg"><img src="../public/img/light/light01_s.jpg" alt="SET ROI버튼으로 조각 출력(세 번째 SET ROI버튼 위 조각이미지)"></a>
-                    <a href="../public/img/light/light02_s.jpg"><img src="../public/img/light/light02_s.jpg" alt="파일열기 후 SET ROI버튼을 통해, 새로운 이미지의 해당 영역을 조각으로 출력"></a>
-
+                    <a href="../public/img/light/light07_s.jpg"><img src="../public/img/light/light07_s.jpg" alt="서버실행화면"></a>
+                    <a href="../public/img/light/light08_s.jpg"><img src="../public/img/light/light08_s.jpg" alt="첫번째 접속한 클라이언트화면(Lee)"></a>
+                    <a href="../public/img/light/light09_s.jpg"><img src="../public/img/light/light09_s.jpg" alt="두번째 접속한 클라이언트화면(Choi)"></a>
                 </div>
             </article>
             <article class="column col1"></article>
@@ -153,24 +152,20 @@
             <article class="column col1"></article>
             <article class="column col1"></article>
             <article class="column col6">
-                <h4 class="col_tit">캡쳐 구현</h4>
                 <p class="col_desc">출처 : 김관영(본인작성),  작업인원 :1(본인)</p>
-                <p class="col_desc">기능 : 최신 캡쳐 영역을 화면에 남겨두는 기능</p>
-                <p class="col_desc">기능 : SET ROI버튼을 통해 지정한 영역 좌표 출력</p>
-                <p class="col_desc">기능 : 조각이미지 출력버튼을 통해 캡쳐 영역 출력</p>
-                <h4 class="col_tit">Video</h4>
-                <p class="col_desc">가장 최신 캡쳐 영역을 SET ROI를 통해 파일열기에서 영역 출력가능</p>
-                <video src="../public/video/light02_s.mp4" controls autoplay></video>
-                
+                <p class="col_desc">기능 : 여러 클라이언트의(사용자의) 오픈채팅방 구현</p>
+                <p class="col_desc">구현 : 클라이언트 소켓배열과 접속횟수를 카운트하는 변수를 하나의 임계영역 관리</p>
                 <h4 class="col_tit">한계 및 느낀점</h4>
                 <h4 class="col_tit">한계</h4>
-                <p class="col_desc">그림에 그려진 기존의 캡쳐 영역이, SET ROI버튼을 두 번 눌러 영역 지정을 해야만, 지워진다.<br/>
-                    조각이미지 출력될 때 캡쳐로 지정한 영역을 컨트롤과 파일에서는 제대로 가져오는데,<br> 조각이미지를 가져오는 코드인, 비트맵 정보를 CImage에 복사하는 함수에서,<br/> 윈도우 영역과 Client 영역의 캡션 차이로 인해서,<br/> 조각이미지로 가져오는 부분이 좌표가 그만큼씩 밀려서 복사된다
-                </p>
+                <p class="col_desc">두 번째 클라이언트가 접속했을 때 빈 말이 다른 사용자들에게 전송됨</p>
                 <h4 class="col_tit">느낀점</h4>
-                <p class="col_desc">윈도우와 클라이언트 영역 간의 캡션, 한글과 영문의 글자 차이에 따른 글자체, 글자크기 설정 등 세세한 부분이<br/> 시각성을 결정하는 것이 영상처리 분야에서 주니어 개발자 딱지를 떼기위한 첫 단계라고 생각한다.<br/> 나의 꼼꼼함과 기본적인 내용 구현 가능한 상태에서<br/> 우리 디알젬 회사에서 ERP/MRP 개발유지보수 업무를 통해<br/> 완성도 높은 영상처리 프로그램을 만들고 싶다.
-                </p>
+                <p class="col_desc">다중채팅방의 구현은 가능하나, 두 번째 클라이언트가 접속시 자신에게도, 다른 클라이언트에게도<br/>
+                    빈 말이 먼저 떠서 빈 말이 전송된다는 점을 고쳐야 한다.<br/><br/>영상처리 분야에서는 멀티스레드가 중요하다고 들었다.<br/>
+                    이 부분을 보완하여 우리 디알젬 회사에서 ERP/MRP 개발유지보수 업무에서<br/> 클라이언트에게 제공할 프로그램을 만드는데에 기여하고 싶다.
+                </p></h4>
+                
             </article>
+
         </section>
         <aside>
             <!--
