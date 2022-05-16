@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gwanyeong Kim(GYCCHANG) -MFCProj.html</title>
+    <title>Gwanyeong Kim(GYCCHANG) -ReductionSum.html</title>
     <style>
         @font-face {
             font-family: "MapoBackpacking";
@@ -51,7 +51,7 @@
             overflow: hidden;
             position: relative;
             width: 1000px;
-            height: 2000px;
+            height: 3000px;
             left: 250px;
         }
 
@@ -65,7 +65,7 @@
             width: 150px;
             height: 1000px;
             left: 1250px;
-            top: -2000px;
+            top: -3000px;
             margin-left: 10px;
             border: thin solid rgb(243, 200, 237);
             background-color: rgb(243, 200, 237);
@@ -121,7 +121,7 @@
             <span class="mp1">영상처리 프로젝트</span>
             <ul>
                 <li><a href="MFCProj.html">MFC 이미지뷰어앱</a></li>
-                <li><a href="ReductionSum.html">CUDA 병렬처리</a>
+                <li><a href="CudaProj.html">CUDA 병렬처리</a>
                     <ol>
                         <li><a href="ReductionSum.html">Reduction Sum</a></li>
                         <li><a href="BrentKung.html">Brent-Kung Inclusive Scan</a></li>
@@ -133,39 +133,35 @@
         </nav>
         <section>
             <!--<span><img src="public/img/main/main_pic2.png" class="homeimg"></span>-->
+            <!-- Reduction Sum(warp/kernel 개수 축소) -->
             <article class="column col1">
-                <h4 class="col_tit">Image Viewer App</h4>
-                <p class="col_desc">이미지에서 캡쳐 영역을 SET ROI버튼을 통해 조각이미지를 출력하는 프로젝트입니다</p>
+                <h4 class="col_tit">Reduction Sum</h4>
+                <p class="col_desc">토너먼트 방식으로 배열의 원소의 합을 구하는 방식입니다</p>
                 <!-- lightbox-->
                 <div class="lightbox square">
-                    <a href="../public/img/light/light01_s.jpg"><img src="../public/img/light/light01_s.jpg" alt="SET ROI버튼으로 조각 출력(세 번째 SET ROI버튼 위 조각이미지)"></a>
-                    <a href="../public/img/light/light02_s.jpg"><img src="../public/img/light/light02_s.jpg" alt="파일열기 후 SET ROI버튼을 통해, 새로운 이미지의 해당 영역을 조각으로 출력"></a>
-
+                    <a href="../public/img/light/light24_s.png"><img src="../public/img/light/light24_s.png"></a>
                 </div>
+                
             </article>
             <article class="column col1"></article>
             <article class="column col1"></article>
             <article class="column col1"></article>
             <article class="column col1"></article>
             <article class="column col6">
-                <h4 class="col_tit">캡쳐 구현</h4>
-                <p class="col_desc">출처 : 김관영(본인작성),  작업인원 :1(본인)</p>
-                <p class="col_desc">기능 : 최신 캡쳐 영역을 화면에 남겨두는 기능</p>
-                <p class="col_desc">기능 : SET ROI버튼을 통해 지정한 영역 좌표 출력</p>
-                <p class="col_desc">기능 : 조각이미지 출력버튼을 통해 캡쳐 영역 출력</p>
-                <h4 class="col_tit">Video</h4>
-                <p class="col_desc">가장 최신 캡쳐 영역을 SET ROI를 통해 파일열기에서 영역 출력가능</p>
-                <video src="../public/video/light02_s.mp4" controls autoplay></video>
-                
-                <h4 class="col_tit">한계 및 느낀점</h4>
-                <h4 class="col_tit">한계</h4>
-                <p class="col_desc">그림에 그려진 기존의 캡쳐 영역이, SET ROI버튼을 두 번 눌러 영역 지정을 해야만, 지워진다.<br/>
-                    조각이미지 출력될 때 캡쳐로 지정한 영역을 컨트롤과 파일에서는 제대로 가져오는데,<br> 조각이미지를 가져오는 코드인, 비트맵 정보를 CImage에 복사하는 함수에서,<br/> 윈도우 영역과 Client 영역의 캡션 차이로 인해서,<br/> 조각이미지로 가져오는 부분이 좌표가 그만큼씩 밀려서 복사된다
-                </p>
-                <h4 class="col_tit">느낀점</h4>
-                <p class="col_desc">윈도우와 클라이언트 영역 간의 캡션, 한글과 영문의 글자 차이에 따른 글자체, 글자크기 설정 등 세세한 부분이<br/> 시각성을 결정하는 것이 영상처리 분야에서 주니어 개발자 딱지를 떼기위한 첫 단계라고 생각한다.<br/> 나의 꼼꼼함과 기본적인 내용 구현 가능한 상태에서<br/> 우리 디알젬 회사에서 ERP/MRP 개발유지보수 업무를 통해<br/> 완성도 높은 영상처리 프로그램을 만들고 싶다.
-                </p>
+                <h4 class="col_tit">기능 및 구현 방법</h4>
+                <p class="col_desc">출처 : 김관영(본인작성), 작업 인원 :1(본인)</p>
+                <p class="col_desc">기능 : __ syncthreads()를 통한 스레드 동기화</p>
+                <p class="col_desc">구현 및 효과 : warp / kernel 개수 축소로 병렬처리 연산횟수 감소</p>
+                <h4 class="col_tit">느낀 점</h4>
+                <p class="col_desc">reduction tree와 dfs알고리즘로부터 유추가능한<br/> inverse reduction tree알고리즘을
+                    작성하여 구현할 수 있었습니다. <br/>이로부터 알고리즘 문제에서 
+                    2차원배열을 다루는데 자주 사용되었던 <br/>dfs알고리즘이 영상처리 분야에서도 쓰인다는것을 알았고 <br/>
+                    우리 디알젬 회사에서 기존의 알고리즘을 응용하여 더 많은 병렬처리로 <br/>연산시간을 단축하는
+                    영상처리 알고리즘을 만들고 싶습니다.</p>
             </article>
+
+
+
         </section>
         <aside>
             <!--

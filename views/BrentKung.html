@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gwanyeong Kim(GYCCHANG) -MFCProj.html</title>
+    <title>Gwanyeong Kim(GYCCHANG) -BrentKung.html</title>
     <style>
         @font-face {
             font-family: "MapoBackpacking";
@@ -51,7 +51,7 @@
             overflow: hidden;
             position: relative;
             width: 1000px;
-            height: 2000px;
+            height: 3000px;
             left: 250px;
         }
 
@@ -65,7 +65,7 @@
             width: 150px;
             height: 1000px;
             left: 1250px;
-            top: -2000px;
+            top: -3000px;
             margin-left: 10px;
             border: thin solid rgb(243, 200, 237);
             background-color: rgb(243, 200, 237);
@@ -121,7 +121,7 @@
             <span class="mp1">영상처리 프로젝트</span>
             <ul>
                 <li><a href="MFCProj.html">MFC 이미지뷰어앱</a></li>
-                <li><a href="ReductionSum.html">CUDA 병렬처리</a>
+                <li><a href="CudaProj.html">CUDA 병렬처리</a>
                     <ol>
                         <li><a href="ReductionSum.html">Reduction Sum</a></li>
                         <li><a href="BrentKung.html">Brent-Kung Inclusive Scan</a></li>
@@ -133,14 +133,14 @@
         </nav>
         <section>
             <!--<span><img src="public/img/main/main_pic2.png" class="homeimg"></span>-->
+            
+            
             <article class="column col1">
-                <h4 class="col_tit">Image Viewer App</h4>
-                <p class="col_desc">이미지에서 캡쳐 영역을 SET ROI버튼을 통해 조각이미지를 출력하는 프로젝트입니다</p>
-                <!-- lightbox-->
+                <h4 class="col_tit">Brent-Kung Inclusive Scan</h4>
+                <p class="col_desc">prefix sum, parallel scan을 통한 partial sum</p>
                 <div class="lightbox square">
-                    <a href="../public/img/light/light01_s.jpg"><img src="../public/img/light/light01_s.jpg" alt="SET ROI버튼으로 조각 출력(세 번째 SET ROI버튼 위 조각이미지)"></a>
-                    <a href="../public/img/light/light02_s.jpg"><img src="../public/img/light/light02_s.jpg" alt="파일열기 후 SET ROI버튼을 통해, 새로운 이미지의 해당 영역을 조각으로 출력"></a>
-
+                    <a href="../public/img/light/light10_s.png"><img src="../public/img/light/light10_s.png" alt="Brent-Kung Inclusive Scan 과 reduction tree의 유사함을 보여주는 그림"></a>
+                    <a href="../public/img/light/light31_s.png"><img src="../public/img/light/light31_s.png" alt="c++버전보다 짧은 연산시간 결과"></a>
                 </div>
             </article>
             <article class="column col1"></article>
@@ -148,27 +148,19 @@
             <article class="column col1"></article>
             <article class="column col1"></article>
             <article class="column col6">
-                <h4 class="col_tit">캡쳐 구현</h4>
+                <h4 class="col_tit">기능 및 구현 방법</h4>
                 <p class="col_desc">출처 : 김관영(본인작성),  작업인원 :1(본인)</p>
-                <p class="col_desc">기능 : 최신 캡쳐 영역을 화면에 남겨두는 기능</p>
-                <p class="col_desc">기능 : SET ROI버튼을 통해 지정한 영역 좌표 출력</p>
-                <p class="col_desc">기능 : 조각이미지 출력버튼을 통해 캡쳐 영역 출력</p>
-                <h4 class="col_tit">Video</h4>
-                <p class="col_desc">가장 최신 캡쳐 영역을 SET ROI를 통해 파일열기에서 영역 출력가능</p>
-                <video src="../public/video/light02_s.mp4" controls autoplay></video>
-                
-                <h4 class="col_tit">한계 및 느낀점</h4>
-                <h4 class="col_tit">한계</h4>
-                <p class="col_desc">그림에 그려진 기존의 캡쳐 영역이, SET ROI버튼을 두 번 눌러 영역 지정을 해야만, 지워진다.<br/>
-                    조각이미지 출력될 때 캡쳐로 지정한 영역을 컨트롤과 파일에서는 제대로 가져오는데,<br> 조각이미지를 가져오는 코드인, 비트맵 정보를 CImage에 복사하는 함수에서,<br/> 윈도우 영역과 Client 영역의 캡션 차이로 인해서,<br/> 조각이미지로 가져오는 부분이 좌표가 그만큼씩 밀려서 복사된다
-                </p>
+                <p class="col_desc">구현 : tournament 방식으로 구한 stride를 활용한 partial_sum이용한 배열 전체 합 구하는 알고리즘</p>
+                <p class="col_desc">구현 : three-kernel scan에서 third kernel scan을 reduction tree와 inverse reduction tree 코드로 구현</p>
                 <h4 class="col_tit">느낀점</h4>
-                <p class="col_desc">윈도우와 클라이언트 영역 간의 캡션, 한글과 영문의 글자 차이에 따른 글자체, 글자크기 설정 등 세세한 부분이<br/> 시각성을 결정하는 것이 영상처리 분야에서 주니어 개발자 딱지를 떼기위한 첫 단계라고 생각한다.<br/> 나의 꼼꼼함과 기본적인 내용 구현 가능한 상태에서<br/> 우리 디알젬 회사에서 ERP/MRP 개발유지보수 업무를 통해<br/> 완성도 높은 영상처리 프로그램을 만들고 싶다.
-                </p>
+                <p class="col_desc">스스로 dfs알고리즘의 유사성을 떠올려 inverse reduction tree로도 구현에 성공했다.<br/>
+                    서적에서 Brent-Kung scan알고리즘이 reduction tree와 유사하다는 설명과 함께 차이점도 제시했다.<br/>각 반복에서 다른 원소를 자신에게 더해야 하는 원소의 인덱스에,<br/> 1을 더해서 인덱스를 수정해주어야 한다는 것이였다. <br/><br/>그래서 나는 이에 대한 답변을 구하기 위해 reduction tree를 적용해보고 <br/>그 이후에 dfs알고리즘을 써도 되겠다는 생각을 했다. <br/><br/>이 경험으로부터 영상처리에 있어서 <br/>기존의 알고리즘을 응용해서 더 많은 효율적인 코드를 <br/>만들어 낼 수 있겠다는 생각에 영상처리 분야에 더 관심이 가게 되는 계기였다.                    
+                </p></h4>
+                
             </article>
         </section>
         <aside>
-            <!--
+        <!--
             <span class="mp2">나의 프로필</span>
             <p />
             <span class="mp5">&#183; 희망 직무</span>
@@ -201,7 +193,7 @@
                 <p />
                 <i></i><i></i><span class="mp4">ERP</span>
             </div>
-            -->
+        --> 
         </aside>
         <footer>
             <small>Copyright &copy; GYCCHANG All. rights reserved <br /></small>
