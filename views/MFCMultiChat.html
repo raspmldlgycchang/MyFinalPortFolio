@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gwanyeong Kim(GYCCHANG) -MultiThread.html</title>
+    <title>Gwanyeong Kim(GYCCHANG) -SharedPrinterJava.html</title>
     <style>
         @font-face {
             font-family: "MapoBackpacking";
@@ -138,28 +138,36 @@
             </ul>
         </nav>
         <section>
-            <!--<span><img src="public/img/main/main_pic2.png" class="homeimg"></span>-->
             <article class="column col1">
-                <h4 class="col_tit">TCP/IP소켓을 이용한 멀티스레드기반 서버</h4>
-                <p class="col_desc">뮤텍스 락 언락의 함수 호출 횟수를 최대한 줄이면서 스레드 동기화를 수행한 프로젝트입니다</p>
+                <h4 class="col_tit">MFC CSocket을 이용한 다중채팅방</h4>
+                <p class="col_desc"></p>
                 <!-- lightbox-->
                 <div class="lightbox square">
-                    <a href="../public/img/light/light05_s.png"><img src="../public/img/light/light05_s.png" alt="두 스레드를 생성해서 동기화를 통해 각각의 프로세스로부터 받은 합을 합산하여 최종합을 출력하는 프로세스의 흐름도"></a>
-                    <a href="../public/img/light/light06_s.jpg"><img src="../public/img/light/light06_s.jpg"></a>
-
+                    <a href="../public/img/light/light44_s.png"><img src="../public/img/light/light44_s.png" alt="개인채팅방에서 클라이언트가 선택한 옵션이 서버에게 전달되는 실행결과"></a>
                 </div>
             </article>
-            <article class="column col1"></article>
+            
             <article class="column col1"></article>
             <article class="column col1"></article>
             <article class="column col1"></article>
             <article class="column col6">
-                <h4 class="col_tit">스레드 동기화를 통한 사용자 입력값을 합산하기</h4>
+                <h4 class="col_tit">문제상황 해결과 구현 방법</h4>
                 <p class="col_desc">출처 : 김관영(본인작성),  작업인원 :1(본인)</p>
-                <p class="col_desc">기능 : 스레드 동기화를 통한 스레드 배열이 반환하는 값의 합을 구함</p>
-                <p class="col_desc">구현 : 스레드가 Join하는 동안 다른 스레드의 접근을 차단</p>
+                <h4 class="col_tit">개인 간 채팅방 구현에서 문제상황과 해결 방법 </h4>
+                <p class="col_desc">한 명의 클라이언트와 한 명의 서버의 대화로부터<br/>
+                    리스너 소켓이 다른 클라이언트의 접속을 받기 위해서 <br/>
+                    현재 연결된 클라이언트와의 대화를 위해서 사용자 소켓이 필요했다.<br/>
+                    여러 클라이언트와 한 명의 서버의 대화에서 <br/>
+                    서버의 사용자 클래스 객체 한 개를 이미 한 명의 클라이언트와의 대화에 사용하고 있는데<br/>
+                    다른 클라이언트가 accept된 후 사용하려고 하니 서버에서 이미 사용자 클래스 객체가 사용중이라는 에러가 났다.
+                    </p>
+                <p class="col_desc">해결 : 그래서 사용자 클래스 객체를 연결리스트로 구현하여 <br/>클라이언트가 접속할 때마다 동적으로 생성하는 코드를 구현하여<br/> 사용자 클래스 객체를 여러 클라이언트가 사용하여 생기는 에러를 해결했다</p>
+                <h4 class="col_tit">다중채팅방 구현에서 문제상황과 해결 방법 </h4>
+                <p class="col_desc">중간에 클라이언트가 접속을 끊는 경우에 해당 소켓을 제거해야 하는 상황이였다.</p>
+                <p class="col_desc">해결 : CSocket을 상속받는 사용자 클래스는 <br/>클라이언트가 연결을 종료할 때 호출되는 OnClose함수가 있었다. <br/>사용자 클래스 연결리스트를 관리하는 서버 클래스 객체에서 <br/>클라이언트가 접속을 끊을 때, 해당 원소를<br/> 연결리스트에서 찾아서 이 원소의 OnClose함수를 호출하여 구현했다. <br/>이때 사용자 클래스 연결리스트 노드 전체를 제거하는 함수를 응용하여 <br/>this포인터를 이용해서 연결을 끊은 클라이언트를 찾는 방법을 이용했다. </p>
             </article>
 
+        
         </section>
         <aside>
             <!--
