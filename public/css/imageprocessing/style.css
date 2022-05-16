@@ -1,3 +1,8 @@
+nav a{text-decoration-line: none;}
+nav a:hover{
+    color:rgb(144, 127, 255);
+
+}
 /* 타이틀 */
 .btn{
     position:absolute;
@@ -48,12 +53,12 @@ video{
 @media(max-width:1530px){
 
     .square a{width:24%;}
-    .square a:nth-child(5n){display:none;}
+    .square a:nth-child(3n){display:none;}
 }
 /* 화면 너비 0~1024px */
 @media(max-width:1024px){
     .square a{width:32.3333%;}
-    .square a:nth-child(5){display:block;}
+    .square a:nth-child(3){display:block;}
 }
 /* 화면 너비 0~960px */
 @media(max-width:960px){
